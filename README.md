@@ -17,6 +17,8 @@ npm install
 npm start
 ```
 
+The local server supports direct example URLs such as `/basic`, `/sorting`, and `/headless-html`.
+
 ## StackBlitz
 
 https://stackblitz.com/github/alexandroit/stackline-angular-data-table-angular-2?file=src%2Fapp%2Fexamples%2Fbasic%2Fbasic.component.ts&initialpath=%2Fbasic&startScript=start

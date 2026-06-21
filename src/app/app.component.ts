@@ -39,7 +39,8 @@ export class AppComponent implements OnInit {
 
   private getInitialExample() {
     var hash = window && window.location ? window.location.hash : '';
-    var id = hash;
+    var pathname = window && window.location ? window.location.pathname : '';
+    var id = hash || pathname;
     var i: number;
 
     if (id.indexOf('#/') === 0) {
@@ -50,6 +51,10 @@ export class AppComponent implements OnInit {
 
     if (id.indexOf('/') === 0) {
       id = id.slice(1);
+    }
+
+    if (id.indexOf('/') > -1) {
+      id = id.split('/')[0];
     }
 
     for (i = 0; i < this.examples.length; i += 1) {

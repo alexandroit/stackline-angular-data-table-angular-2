@@ -5,7 +5,7 @@
   "description": "Clean Angular 2 StackBlitz playground for @stackline/angular-data-table-component.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "npm run build && http-server . -p 4200 -c-1"
+    "start": "npm run build && node stackblitz-server.js"
   },
   "dependencies": {
     "@angular/common": "2.4.10",
@@ -16,7 +16,6 @@
     "@angular/platform-browser-dynamic": "2.4.10",
     "@stackline/angular-data-table-component": "2.0.0",
     "core-js": "2.6.12",
-    "http-server": "14.1.1",
     "reflect-metadata": "0.1.10",
     "rxjs": "5.0.3",
     "systemjs": "0.19.47",
