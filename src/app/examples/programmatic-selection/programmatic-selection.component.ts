@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getTicketColumns, tickets as ticketRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ProgrammaticSelectionSnippets } from './programmatic-selection.snippets';
 
 @Component({
   selector: 'programmatic-selection-example',
@@ -11,16 +12,8 @@ export class ProgrammaticSelectionExampleComponent extends TableExampleBase {
   summary = 'Preselect rows from a predicate supplied by the app.';
   ticketColumns = getTicketColumns();
   tickets = ticketRows;
-  htmlSnippet = `<stackline-data-table
-  title="High priority tickets"
-  [columns]="ticketColumns"
-  [data]="tickets"
-  [selectableRows]="true"
-  [selectableRowSelected]="isHighPriority">
-</stackline-data-table>`;
-  tsSnippet = `isHighPriority(row: any) {
-  return row.priority === 'High';
-}`;
+  htmlSnippet = ProgrammaticSelectionSnippets.html;
+  tsSnippet = ProgrammaticSelectionSnippets.ts;
 
   isHighPriority(row: any) {
     return row.priority === 'High';

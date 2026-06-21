@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getLockedColumns, lockedRows as rows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { DisabledSelectionSnippets } from './disabled-selection.snippets';
 
 @Component({
   selector: 'disabled-selection-example',
@@ -11,16 +12,8 @@ export class DisabledSelectionExampleComponent extends TableExampleBase {
   summary = 'Block selection for locked rows while keeping the table interactive.';
   lockedColumns = getLockedColumns();
   lockedRows = rows;
-  htmlSnippet = `<stackline-data-table
-  title="Locked rows"
-  [columns]="lockedColumns"
-  [data]="lockedRows"
-  [selectableRows]="true"
-  [selectableRowDisabled]="isLocked">
-</stackline-data-table>`;
-  tsSnippet = `isLocked(row: any) {
-  return !!row.locked;
-}`;
+  htmlSnippet = DisabledSelectionSnippets.html;
+  tsSnippet = DisabledSelectionSnippets.ts;
 
   isLocked(row: any) {
     return !!row.locked;

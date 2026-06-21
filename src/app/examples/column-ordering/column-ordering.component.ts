@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getAdvancedColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ColumnOrderingSnippets } from './column-ordering.snippets';
 
 @Component({
   selector: 'column-ordering-example',
@@ -13,28 +14,8 @@ export class ColumnOrderingExampleComponent extends TableExampleBase {
   orders = orderRows;
   columnOrderPreset = 'customer-first';
   columnOrderState: any[] = ['customer', 'order', 'region', 'status', 'total', 'channel'];
-  htmlSnippet = `<label>
-  Order preset
-  <select [value]="columnOrderPreset" (change)="setColumnOrderPreset($event.target.value)">
-    <option value="customer-first">Customer first</option>
-    <option value="money-first">Money first</option>
-    <option value="operations-first">Operations first</option>
-  </select>
-</label>
-
-<stackline-data-table
-  title="Column ordering"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [columnOrder]="columnOrderState">
-</stackline-data-table>`;
-  tsSnippet = `columnOrderState = ['customer', 'order', 'region', 'status', 'total', 'channel'];
-
-setColumnOrderPreset(preset: string) {
-  this.columnOrderState = preset === 'money-first'
-    ? ['total', 'order', 'customer', 'region', 'status', 'channel']
-    : ['customer', 'order', 'region', 'status', 'total', 'channel'];
-}`;
+  htmlSnippet = ColumnOrderingSnippets.html;
+  tsSnippet = ColumnOrderingSnippets.ts;
 
   setColumnOrderPreset(preset: string) {
     this.columnOrderPreset = preset;

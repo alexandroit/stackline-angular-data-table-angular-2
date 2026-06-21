@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getAdvancedColumns, orders as orderRows, regionOptions, statusOptions } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ColumnFilteringSnippets } from './column-filtering.snippets';
 
 @Component({
   selector: 'column-filtering-example',
@@ -16,27 +17,8 @@ export class ColumnFilteringExampleComponent extends TableExampleBase {
   columnStatusFilterValue = 'Paid';
   columnRegionFilterValue = '';
   statusColumnFilters = [{ id: 'status', value: 'Paid' }];
-  htmlSnippet = `<label>
-  Status combobox
-  <select [value]="columnStatusFilterValue" (change)="setColumnStatusFilter($event.target.value)">
-    <option *ngFor="let status of statusOptions" [value]="status">{{ status || 'All statuses' }}</option>
-  </select>
-</label>
-
-<stackline-data-table
-  title="Column filters"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [columnFilters]="statusColumnFilters">
-</stackline-data-table>`;
-  tsSnippet = `statusColumnFilters = [{ id: 'status', value: 'Paid' }];
-
-syncColumnFilters() {
-  var filters = [];
-  if (this.columnStatusFilterValue) filters.push({ id: 'status', value: this.columnStatusFilterValue });
-  if (this.columnRegionFilterValue) filters.push({ id: 'region', value: this.columnRegionFilterValue });
-  this.statusColumnFilters = filters;
-}`;
+  htmlSnippet = ColumnFilteringSnippets.html;
+  tsSnippet = ColumnFilteringSnippets.ts;
 
   setColumnStatusFilter(value: string) {
     this.columnStatusFilterValue = value || '';

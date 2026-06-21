@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getAdvancedColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { GlobalFilteringSnippets } from './global-filtering.snippets';
 
 @Component({
   selector: 'global-filtering-example',
@@ -12,25 +13,8 @@ export class GlobalFilteringExampleComponent extends TableExampleBase {
   advancedColumns = getAdvancedColumns();
   orders = orderRows;
   globalFilterText = 'canada';
-  htmlSnippet = `<label>
-  Global search
-  <input
-    type="search"
-    [value]="globalFilterText"
-    (input)="setGlobalFilter($event.target.value)" />
-</label>
-
-<stackline-data-table
-  title="Global filtering"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [globalFilter]="globalFilterText">
-</stackline-data-table>`;
-  tsSnippet = `globalFilterText = 'canada';
-
-setGlobalFilter(value: string) {
-  this.globalFilterText = value || '';
-}`;
+  htmlSnippet = GlobalFilteringSnippets.html;
+  tsSnippet = GlobalFilteringSnippets.ts;
 
   setGlobalFilter(value: string) {
     this.globalFilterText = value || '';

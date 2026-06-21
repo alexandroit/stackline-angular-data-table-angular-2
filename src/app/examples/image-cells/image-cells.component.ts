@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, TemplateRef, ViewChild } from '@angular/core';
 import { dataSnippet } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ImageCellsSnippets } from './image-cells.snippets';
 
 @Component({
   selector: 'image-cells-example',
@@ -19,30 +20,8 @@ export class ImageCellsExampleComponent extends TableExampleBase implements Afte
     { id: 3, name: 'Mechanical Keyboard', category: 'Workspace', stock: 31, owner: 'Iris', image: 'src/app/assets/products/keyboard.svg' },
     { id: 4, name: 'Ops Watch', category: 'Field team', stock: 12, owner: 'Noah', image: 'src/app/assets/products/watch.svg' }
   ];
-  htmlSnippet = `<template #productCell let-row="row">
-  <span class="product-cell">
-    <img [src]="row.image" [alt]="row.name" />
-    <span>
-      <strong>{{ row.name }}</strong>
-      <small>{{ row.category }}</small>
-    </span>
-  </span>
-</template>
-
-<stackline-data-table
-  title="Product media table"
-  [columns]="imageColumns"
-  [data]="products">
-</stackline-data-table>`;
-  tsSnippet = `@ViewChild('productCell') productCellTemplate: TemplateRef<any>;
-
-ngAfterViewInit() {
-  this.imageColumns = [
-    { id: 'product', name: 'Product', selector: 'name', cellTemplate: this.productCellTemplate },
-    { id: 'owner', name: 'Owner', selector: 'owner' },
-    { id: 'stock', name: 'Stock', selector: 'stock', right: true }
-  ];
-}`;
+  htmlSnippet = ImageCellsSnippets.html;
+  tsSnippet = ImageCellsSnippets.ts;
 
   constructor(private changeDetector: ChangeDetectorRef) {
     super();

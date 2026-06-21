@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getInventoryColumns, inventory as inventoryRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ConditionalStylesSnippets } from './conditional-styles.snippets';
 
 @Component({
   selector: 'conditional-styles-example',
@@ -19,16 +20,8 @@ export class ConditionalStylesExampleComponent extends TableExampleBase {
       className: 'row-warning'
     }
   ];
-  htmlSnippet = `<stackline-data-table
-  title="Inventory risk"
-  [columns]="inventoryColumns"
-  [data]="inventory"
-  [conditionalRowStyles]="inventoryStyles">
-</stackline-data-table>`;
-  tsSnippet = `inventoryStyles = [{
-  when: function(row) { return row.stock < 10; },
-  className: 'row-warning'
-}];`;
+  htmlSnippet = ConditionalStylesSnippets.html;
+  tsSnippet = ConditionalStylesSnippets.ts;
 
   protected getDataSnippet() {
     return dataSnippet(this.inventory.slice(0, 3));

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getOrderColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { LoadingSnippets } from './loading.snippets';
 
 @Component({
   selector: 'loading-example',
@@ -11,13 +12,8 @@ export class LoadingExampleComponent extends TableExampleBase {
   summary = 'Progress state for async data loading.';
   orderColumns = getOrderColumns();
   orders = orderRows;
-  htmlSnippet = `<stackline-data-table
-  title="Loading state"
-  [columns]="orderColumns"
-  [data]="orders"
-  [progressPending]="true">
-</stackline-data-table>`;
-  tsSnippet = `progressPending = true;`;
+  htmlSnippet = LoadingSnippets.html;
+  tsSnippet = LoadingSnippets.ts;
 
   protected getDataSnippet() {
     return dataSnippet(this.orders.slice(0, 3));

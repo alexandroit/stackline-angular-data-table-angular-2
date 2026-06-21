@@ -8,6 +8,7 @@ import {
   statusOptions
 } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { KitchenSinkSnippets } from './kitchen-sink.snippets';
 
 @Component({
   selector: 'kitchen-sink-example',
@@ -30,26 +31,8 @@ export class KitchenSinkExampleComponent extends TableExampleBase implements OnI
   columnPinningState: any = { left: ['order'], right: ['total'] };
   columnSizingState: any = { order: 130, customer: 240, total: 130 };
   topPinnedOrders: any[] = [];
-  htmlSnippet = `<stackline-data-table
-  title="Kitchen sink"
-  [columns]="headerGroupColumns"
-  [data]="orders"
-  [globalFilter]="kitchenGlobalFilter"
-  [columnFilters]="kitchenColumnFilters"
-  [columnVisibility]="kitchenColumnVisibility"
-  [columnOrder]="kitchenColumnOrder"
-  [columnPinning]="columnPinningState"
-  [pinnedTopRows]="topPinnedOrders"
-  [selectableRows]="true"
-  [expandableRows]="true"
-  [groupBy]="kitchenGroupBy">
-</stackline-data-table>`;
-  tsSnippet = `kitchenGlobalFilter = 'paid';
-kitchenRegionFilter = 'Canada';
-kitchenColumnFilters = [{ id: 'region', value: 'Canada' }];
-kitchenColumnVisibility = { channel: false };
-kitchenColumnOrder = ['order', 'customer', 'status', 'region', 'total'];
-kitchenGroupBy = 'region';`;
+  htmlSnippet = KitchenSinkSnippets.html;
+  tsSnippet = KitchenSinkSnippets.ts;
 
   ngOnInit() {
     this.topPinnedOrders = [this.orders[6]];

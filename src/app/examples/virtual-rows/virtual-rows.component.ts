@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { buildLargeRows, dataSnippet, getLargeColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { VirtualRowsSnippets } from './virtual-rows.snippets';
 
 @Component({
   selector: 'virtual-rows-example',
@@ -11,17 +12,8 @@ export class VirtualRowsExampleComponent extends TableExampleBase {
   summary = 'Render a window of a larger row set for heavy legacy screens.';
   largeColumns = getLargeColumns();
   largeRows = buildLargeRows();
-  htmlSnippet = `<stackline-data-table
-  title="Virtual rows"
-  [columns]="largeColumns"
-  [data]="largeRows"
-  [virtualRows]="true"
-  [virtualStartIndex]="20"
-  [virtualRowCount]="12">
-</stackline-data-table>`;
-  tsSnippet = `largeRows = buildLargeRows();
-virtualStartIndex = 20;
-virtualRowCount = 12;`;
+  htmlSnippet = VirtualRowsSnippets.html;
+  tsSnippet = VirtualRowsSnippets.ts;
 
   protected getDataSnippet() {
     return dataSnippet(this.largeRows.slice(20, 24));

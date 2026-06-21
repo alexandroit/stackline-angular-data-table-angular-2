@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { dataSnippet, getOrderColumns, orders as orderRows, pageSizes } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ServerPaginationSnippets } from './server-pagination.snippets';
 
 @Component({
   selector: 'server-pagination-example',
@@ -15,26 +16,8 @@ export class ServerPaginationExampleComponent extends TableExampleBase implement
   serverPage = 1;
   serverRowsPerPage = 4;
   serverRows: any[] = [];
-  htmlSnippet = `<stackline-data-table
-  title="Server pagination simulation"
-  [columns]="orderColumns"
-  [data]="serverRows"
-  [pagination]="true"
-  [paginationServer]="true"
-  [paginationTotalRows]="orders.length"
-  [paginationDefaultPage]="serverPage"
-  [paginationPerPage]="serverRowsPerPage"
-  (pageChange)="changeServerPage($event)">
-</stackline-data-table>`;
-  tsSnippet = `changeServerPage(event: any) {
-  this.serverPage = event.page;
-  this.updateServerRows();
-}
-
-updateServerRows() {
-  var start = (this.serverPage - 1) * this.serverRowsPerPage;
-  this.serverRows = this.orders.slice(start, start + this.serverRowsPerPage);
-}`;
+  htmlSnippet = ServerPaginationSnippets.html;
+  tsSnippet = ServerPaginationSnippets.ts;
 
   ngOnInit() {
     this.updateServerRows();

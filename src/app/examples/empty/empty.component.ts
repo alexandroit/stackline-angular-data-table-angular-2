@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getOrderColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { EmptySnippets } from './empty.snippets';
 
 @Component({
   selector: 'empty-example',
@@ -11,13 +12,8 @@ export class EmptyExampleComponent extends TableExampleBase {
   summary = 'Custom empty message when there are no rows.';
   orderColumns = getOrderColumns();
   emptyRows: any[] = [];
-  htmlSnippet = `<stackline-data-table
-  title="Empty project list"
-  [columns]="orderColumns"
-  [data]="emptyRows"
-  noDataText="No projects were found">
-</stackline-data-table>`;
-  tsSnippet = `emptyRows = [];`;
+  htmlSnippet = EmptySnippets.html;
+  tsSnippet = EmptySnippets.ts;
 
   protected getDataSnippet() {
     return dataSnippet(this.emptyRows);

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getAdvancedColumns, orders as orderRows, statusOptions } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { FacetingSnippets } from './faceting.snippets';
 
 @Component({
   selector: 'faceting-example',
@@ -15,19 +16,8 @@ export class FacetingExampleComponent extends TableExampleBase {
   facetFilterText = '';
   facetStatusFilterValue = '';
   facetColumnFilters: any[] = [];
-  htmlSnippet = `<stackline-data-table
-  #facetedTable
-  title="Faceted values"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [globalFilter]="facetFilterText"
-  [columnFilters]="facetColumnFilters">
-</stackline-data-table>
-
-{{ getFacetSummary(facetedTable, 'status') }}`;
-  tsSnippet = `getFacetSummary(table: any, columnId: string) {
-  return JSON.stringify(table.getColumnUniqueValues(columnId), null, 2);
-}`;
+  htmlSnippet = FacetingSnippets.html;
+  tsSnippet = FacetingSnippets.ts;
 
   setFacetFilter(value: string) {
     this.facetFilterText = value || '';

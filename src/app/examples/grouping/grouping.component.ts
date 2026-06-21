@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { dataSnippet, getAdvancedColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { GroupingSnippets } from './grouping.snippets';
 
 @Component({
   selector: 'grouping-example',
@@ -12,26 +13,8 @@ export class GroupingExampleComponent extends TableExampleBase {
   advancedColumns = getAdvancedColumns();
   orders = orderRows;
   groupByField = 'region';
-  htmlSnippet = `<label>
-  Group by
-  <select [value]="groupByField" (change)="setGroupByField($event.target.value)">
-    <option value="region">Region</option>
-    <option value="status">Status</option>
-    <option value="channel">Channel</option>
-  </select>
-</label>
-
-<stackline-data-table
-  title="Grouped rows"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [groupBy]="groupByField">
-</stackline-data-table>`;
-  tsSnippet = `groupByField = 'region';
-
-setGroupByField(value: string) {
-  this.groupByField = value || 'region';
-}`;
+  htmlSnippet = GroupingSnippets.html;
+  tsSnippet = GroupingSnippets.ts;
 
   setGroupByField(value: string) {
     this.groupByField = value || 'region';

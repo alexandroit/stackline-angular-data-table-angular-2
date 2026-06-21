@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, TemplateRef, ViewChild } from '@angular/core';
 import { dataSnippet, formatTotal, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { CellTemplatesSnippets } from './cell-templates.snippets';
 
 @Component({
   selector: 'cell-templates-example',
@@ -15,22 +16,8 @@ export class CellTemplatesExampleComponent extends TableExampleBase implements A
   summary = 'Angular TemplateRef cells for status, customer and money values.';
   orders = orderRows;
   templateColumns: any[] = [];
-  htmlSnippet = `<template #statusCell let-value="value">
-  <span class="status-badge">{{ value }}</span>
-</template>
-
-<stackline-data-table
-  title="Template cells"
-  [columns]="templateColumns"
-  [data]="orders">
-</stackline-data-table>`;
-  tsSnippet = `@ViewChild('statusCell') statusCellTemplate: TemplateRef<any>;
-
-ngAfterViewInit() {
-  this.templateColumns = [
-    { id: 'status', name: 'Status', selector: 'status', cellTemplate: this.statusCellTemplate }
-  ];
-}`;
+  htmlSnippet = CellTemplatesSnippets.html;
+  tsSnippet = CellTemplatesSnippets.ts;
 
   constructor(private changeDetector: ChangeDetectorRef) {
     super();

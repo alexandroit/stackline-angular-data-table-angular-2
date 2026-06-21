@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { dataSnippet, getAdvancedColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { RowPinningSnippets } from './row-pinning.snippets';
 
 @Component({
   selector: 'row-pinning-example',
@@ -13,15 +14,8 @@ export class RowPinningExampleComponent extends TableExampleBase implements OnIn
   orders = orderRows;
   topPinnedOrders: any[] = [];
   bottomPinnedOrders: any[] = [];
-  htmlSnippet = `<stackline-data-table
-  title="Row pinning"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [pinnedTopRows]="topPinnedOrders"
-  [pinnedBottomRows]="bottomPinnedOrders">
-</stackline-data-table>`;
-  tsSnippet = `topPinnedOrders = [orders[6]];
-bottomPinnedOrders = [orders[1]];`;
+  htmlSnippet = RowPinningSnippets.html;
+  tsSnippet = RowPinningSnippets.ts;
 
   ngOnInit() {
     this.topPinnedOrders = [this.orders[6]];

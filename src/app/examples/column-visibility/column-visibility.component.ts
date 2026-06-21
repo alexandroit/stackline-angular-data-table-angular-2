@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { cloneColumnVisibility, dataSnippet, getAdvancedColumns, orders as orderRows, visibilityColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
+import { ColumnVisibilitySnippets } from './column-visibility.snippets';
 
 @Component({
   selector: 'column-visibility-example',
@@ -13,25 +14,8 @@ export class ColumnVisibilityExampleComponent extends TableExampleBase {
   orders = orderRows;
   visibilityColumns = visibilityColumns;
   columnVisibilityState: any = { channel: false };
-  htmlSnippet = `<label *ngFor="let column of visibilityColumns">
-  <input
-    type="checkbox"
-    [checked]="isDemoColumnVisible(column.id)"
-    (change)="setDemoColumnVisible(column.id, $event.target.checked)" />
-  {{ column.label }}
-</label>
-
-<stackline-data-table
-  title="Column visibility"
-  [columns]="advancedColumns"
-  [data]="orders"
-  [columnVisibility]="columnVisibilityState">
-</stackline-data-table>`;
-  tsSnippet = `columnVisibilityState = { channel: false };
-
-setDemoColumnVisible(columnId: string, visible: boolean) {
-  this.columnVisibilityState = cloneColumnVisibility(this.columnVisibilityState, columnId, visible);
-}`;
+  htmlSnippet = ColumnVisibilitySnippets.html;
+  tsSnippet = ColumnVisibilitySnippets.ts;
 
   isDemoColumnVisible(columnId: string) {
     return this.columnVisibilityState[columnId] !== false;
