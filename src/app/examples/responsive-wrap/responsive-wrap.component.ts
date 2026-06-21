@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ResponsiveWrapSnippets } from './responsive-wrap.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class ResponsiveWrapExampleComponent extends TableExampleBase {
   summary = 'Long values wrap while the responsive shell protects the layout.';
   wrappedColumns = this.demoData.getWrappedColumns();
   longTextRows = this.demoData.getLongTextRows();
-  htmlSnippet = ResponsiveWrapSnippets.html;
-  tsSnippet = ResponsiveWrapSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.longTextRows);

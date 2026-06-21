@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { SortingSnippets } from './sorting.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class SortingExampleComponent extends TableExampleBase {
   summary = 'Client-side sorting with a default descending sort.';
   inventoryColumns = this.demoData.getInventoryColumns();
   inventory = this.demoData.getInventory();
-  htmlSnippet = SortingSnippets.html;
-  tsSnippet = SortingSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.inventory.slice(0, 3));

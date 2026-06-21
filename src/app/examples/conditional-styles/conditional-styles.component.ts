@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ConditionalStylesSnippets } from './conditional-styles.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -25,8 +24,6 @@ export class ConditionalStylesExampleComponent extends TableExampleBase {
       className: 'row-warning'
     }
   ];
-  htmlSnippet = ConditionalStylesSnippets.html;
-  tsSnippet = ConditionalStylesSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.inventory.slice(0, 3));

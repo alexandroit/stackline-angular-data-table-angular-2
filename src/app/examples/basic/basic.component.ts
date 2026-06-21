@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { BasicSnippets } from './basic.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -18,8 +17,6 @@ export class BasicExampleComponent extends TableExampleBase {
   orderColumns = this.demoData.getOrderColumns();
   orders = this.demoData.getOrders();
   pageSizes = this.demoData.getPageSizes();
-  htmlSnippet = BasicSnippets.html;
-  tsSnippet = BasicSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

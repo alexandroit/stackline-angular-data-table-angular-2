@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { AccessibilityKeyboardSnippets } from './accessibility-keyboard.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class AccessibilityKeyboardExampleComponent extends TableExampleBase {
   summary = 'ARIA sort, labels, selected state, expanded state and row keyboard activation.';
   orderColumns = this.demoData.getOrderColumns();
   orders = this.demoData.getOrders();
-  htmlSnippet = AccessibilityKeyboardSnippets.html;
-  tsSnippet = AccessibilityKeyboardSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

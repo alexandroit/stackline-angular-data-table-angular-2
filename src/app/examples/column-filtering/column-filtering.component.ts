@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ColumnFilteringSnippets } from './column-filtering.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -22,8 +21,6 @@ export class ColumnFilteringExampleComponent extends TableExampleBase {
   columnStatusFilterValue = 'Paid';
   columnRegionFilterValue = '';
   statusColumnFilters = [{ id: 'status', value: 'Paid' }];
-  htmlSnippet = ColumnFilteringSnippets.html;
-  tsSnippet = ColumnFilteringSnippets.ts;
 
   setColumnStatusFilter(value: string) {
     this.columnStatusFilterValue = value || '';

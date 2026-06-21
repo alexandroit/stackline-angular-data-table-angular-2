@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ProgrammaticSelectionSnippets } from './programmatic-selection.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class ProgrammaticSelectionExampleComponent extends TableExampleBase {
   summary = 'Preselect rows from a predicate supplied by the app.';
   ticketColumns = this.demoData.getTicketColumns();
   tickets = this.demoData.getTickets();
-  htmlSnippet = ProgrammaticSelectionSnippets.html;
-  tsSnippet = ProgrammaticSelectionSnippets.ts;
 
   isHighPriority(row: any) {
     return row.priority === 'High';

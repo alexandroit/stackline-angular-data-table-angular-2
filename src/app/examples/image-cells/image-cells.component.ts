@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ImageCellsSnippets } from './image-cells.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -16,8 +15,6 @@ export class ImageCellsExampleComponent extends TableExampleBase implements Afte
   summary = 'Product and user-media cells rendered with Angular templates and local image assets.';
   imageColumns: any[] = [];
   products = this.demoData.getProducts('src/app/assets/products');
-  htmlSnippet = ImageCellsSnippets.html;
-  tsSnippet = ImageCellsSnippets.ts;
 
   constructor(private changeDetector: ChangeDetectorRef, protected demoData: TableDemoDataService) {
     super();

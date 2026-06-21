@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { CellTemplatesSnippets } from './cell-templates.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class CellTemplatesExampleComponent extends TableExampleBase implements A
   summary = 'Angular TemplateRef cells for status, customer and money values.';
   orders = this.demoData.getOrders();
   templateColumns: any[] = [];
-  htmlSnippet = CellTemplatesSnippets.html;
-  tsSnippet = CellTemplatesSnippets.ts;
 
   constructor(private changeDetector: ChangeDetectorRef, protected demoData: TableDemoDataService) {
     super();

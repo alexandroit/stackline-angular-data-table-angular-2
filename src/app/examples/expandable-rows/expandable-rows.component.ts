@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ExpandableRowsSnippets } from './expandable-rows.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class ExpandableRowsExampleComponent extends TableExampleBase {
   summary = 'Expanded details rendered from an Angular template.';
   orderColumns = this.demoData.getOrderColumns();
   orders = this.demoData.getOrders();
-  htmlSnippet = ExpandableRowsSnippets.html;
-  tsSnippet = ExpandableRowsSnippets.ts;
 
   isLargeOrder(row: any) {
     return row.total > 2000;

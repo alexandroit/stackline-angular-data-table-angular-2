@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { FixedHeaderSnippets } from './fixed-header.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class FixedHeaderExampleComponent extends TableExampleBase {
   summary = 'Scrollable table body with sticky header support.';
   revenueColumns = this.demoData.getRevenueColumns();
   revenue = this.demoData.getRevenue();
-  htmlSnippet = FixedHeaderSnippets.html;
-  tsSnippet = FixedHeaderSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.revenue.slice(0, 3));

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { VirtualRowsSnippets } from './virtual-rows.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class VirtualRowsExampleComponent extends TableExampleBase {
   summary = 'Render a window of a larger row set for heavy legacy screens.';
   largeColumns = this.demoData.getLargeColumns();
   largeRows = this.demoData.buildLargeRows();
-  htmlSnippet = VirtualRowsSnippets.html;
-  tsSnippet = VirtualRowsSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.largeRows.slice(20, 24));

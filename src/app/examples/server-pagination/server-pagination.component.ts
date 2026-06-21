@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ServerPaginationSnippets } from './server-pagination.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -21,8 +20,6 @@ export class ServerPaginationExampleComponent extends TableExampleBase implement
   serverPage = 1;
   serverRowsPerPage = 4;
   serverRows: any[] = [];
-  htmlSnippet = ServerPaginationSnippets.html;
-  tsSnippet = ServerPaginationSnippets.ts;
 
   ngOnInit() {
     this.updateServerRows();

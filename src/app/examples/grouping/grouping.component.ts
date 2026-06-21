@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { GroupingSnippets } from './grouping.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -18,8 +17,6 @@ export class GroupingExampleComponent extends TableExampleBase {
   advancedColumns = this.demoData.getAdvancedColumns();
   orders = this.demoData.getOrders();
   groupByField = 'region';
-  htmlSnippet = GroupingSnippets.html;
-  tsSnippet = GroupingSnippets.ts;
 
   setGroupByField(value: string) {
     this.groupByField = value || 'region';

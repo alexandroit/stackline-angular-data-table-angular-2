@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { DenseSnippets } from './dense.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class DenseExampleComponent extends TableExampleBase {
   summary = 'Compact row height for operation-heavy screens.';
   ticketColumns = this.demoData.getTicketColumns();
   tickets = this.demoData.getTickets();
-  htmlSnippet = DenseSnippets.html;
-  tsSnippet = DenseSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.tickets.slice(0, 3));

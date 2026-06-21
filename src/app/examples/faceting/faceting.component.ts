@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { FacetingSnippets } from './faceting.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -21,8 +20,6 @@ export class FacetingExampleComponent extends TableExampleBase {
   facetFilterText = '';
   facetStatusFilterValue = '';
   facetColumnFilters: any[] = [];
-  htmlSnippet = FacetingSnippets.html;
-  tsSnippet = FacetingSnippets.ts;
 
   setFacetFilter(value: string) {
     this.facetFilterText = value || '';

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { MultiSelectionSnippets } from './multi-selection.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class MultiSelectionExampleComponent extends TableExampleBase {
   summary = 'Checkbox row selection with selected-row highlighting.';
   orderColumns = this.demoData.getOrderColumns();
   orders = this.demoData.getOrders();
-  htmlSnippet = MultiSelectionSnippets.html;
-  tsSnippet = MultiSelectionSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

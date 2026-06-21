@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ColumnOrderingSnippets } from './column-ordering.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -19,8 +18,6 @@ export class ColumnOrderingExampleComponent extends TableExampleBase {
   orders = this.demoData.getOrders();
   columnOrderPreset = 'customer-first';
   columnOrderState: any[] = ['customer', 'order', 'region', 'status', 'total', 'channel'];
-  htmlSnippet = ColumnOrderingSnippets.html;
-  tsSnippet = ColumnOrderingSnippets.ts;
 
   setColumnOrderPreset(preset: string) {
     this.columnOrderPreset = preset;

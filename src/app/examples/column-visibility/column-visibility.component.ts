@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ColumnVisibilitySnippets } from './column-visibility.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -19,8 +18,6 @@ export class ColumnVisibilityExampleComponent extends TableExampleBase {
   orders = this.demoData.getOrders();
   visibilityColumns = this.demoData.getVisibilityColumns();
   columnVisibilityState: any = { channel: false };
-  htmlSnippet = ColumnVisibilitySnippets.html;
-  tsSnippet = ColumnVisibilitySnippets.ts;
 
   isDemoColumnVisible(columnId: string) {
     return this.columnVisibilityState[columnId] !== false;

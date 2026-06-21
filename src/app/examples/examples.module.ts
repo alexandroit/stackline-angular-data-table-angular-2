@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DataTableModule } from '@stackline/angular-data-table-component';
 import { ExampleShellComponent } from '../shared/example-shell.component';
 import { TableDemoDataService } from '../services/table-demo-data.service';
+import { SourceFileService } from '../services/source-file.service';
 import { AccessibilityKeyboardExampleComponent } from './accessibility-keyboard/accessibility-keyboard.component';
 import { BasicExampleComponent } from './basic/basic.component';
 import { CellTemplatesExampleComponent } from './cell-templates/cell-templates.component';
@@ -126,7 +127,8 @@ import { VisiblePageSelectionExampleComponent } from './visible-page-selection/v
     VisiblePageSelectionExampleComponent
   ],
   providers: [
-    TableDemoDataService
+    TableDemoDataService,
+    SourceFileService
   ]
 })
 export class ExamplesModule {}

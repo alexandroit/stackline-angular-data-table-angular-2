@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ExpandOnClickSnippets } from './expand-on-click.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class ExpandOnClickExampleComponent extends TableExampleBase {
   summary = 'Hide the expander and use row clicks to toggle details.';
   orderColumns = this.demoData.getOrderColumns();
   orders = this.demoData.getOrders();
-  htmlSnippet = ExpandOnClickSnippets.html;
-  tsSnippet = ExpandOnClickSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

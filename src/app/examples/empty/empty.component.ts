@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { EmptySnippets } from './empty.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class EmptyExampleComponent extends TableExampleBase {
   summary = 'Custom empty message when there are no rows.';
   orderColumns = this.demoData.getOrderColumns();
   emptyRows: any[] = [];
-  htmlSnippet = EmptySnippets.html;
-  tsSnippet = EmptySnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.emptyRows);

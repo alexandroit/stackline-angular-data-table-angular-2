@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { GlobalFilteringSnippets } from './global-filtering.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -18,8 +17,6 @@ export class GlobalFilteringExampleComponent extends TableExampleBase {
   advancedColumns = this.demoData.getAdvancedColumns();
   orders = this.demoData.getOrders();
   globalFilterText = 'canada';
-  htmlSnippet = GlobalFilteringSnippets.html;
-  tsSnippet = GlobalFilteringSnippets.ts;
 
   setGlobalFilter(value: string) {
     this.globalFilterText = value || '';

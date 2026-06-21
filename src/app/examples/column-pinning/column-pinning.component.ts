@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { ColumnPinningSnippets } from './column-pinning.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -19,8 +18,6 @@ export class ColumnPinningExampleComponent extends TableExampleBase {
   orders = this.demoData.getOrders();
   columnPinningState: any = { left: ['order'], right: ['total'] };
   columnSizingState: any = { order: 130, customer: 240, total: 130 };
-  htmlSnippet = ColumnPinningSnippets.html;
-  tsSnippet = ColumnPinningSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

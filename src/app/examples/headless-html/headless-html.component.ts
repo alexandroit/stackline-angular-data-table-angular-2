@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { createDataTableController, DataTableColumn, HeadlessDataTableController } from '@stackline/angular-data-table-component';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { HeadlessHtmlSnippets } from './headless-html.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -33,8 +32,6 @@ export class HeadlessHtmlExampleComponent extends TableExampleBase implements On
     { id: 5, name: 'Warehouse sync', status: 'Ready', owner: 'Lena', score: 81 },
     { id: 6, name: 'Invoice matching', status: 'Review', owner: 'Maya', score: 74 }
   ];
-  htmlSnippet = HeadlessHtmlSnippets.html;
-  tsSnippet = HeadlessHtmlSnippets.ts;
 
   ngOnInit() {
     this.headless = createDataTableController({

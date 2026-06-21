@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { LoadingSnippets } from './loading.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class LoadingExampleComponent extends TableExampleBase {
   summary = 'Progress state for async data loading.';
   orderColumns = this.demoData.getOrderColumns();
   orders = this.demoData.getOrders();
-  htmlSnippet = LoadingSnippets.html;
-  tsSnippet = LoadingSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

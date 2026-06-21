@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { KitchenSinkSnippets } from './kitchen-sink.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -29,8 +28,6 @@ export class KitchenSinkExampleComponent extends TableExampleBase implements OnI
   columnPinningState: any = { left: ['order'], right: ['total'] };
   columnSizingState: any = { order: 130, customer: 240, total: 130 };
   topPinnedOrders: any[] = [];
-  htmlSnippet = KitchenSinkSnippets.html;
-  tsSnippet = KitchenSinkSnippets.ts;
 
   ngOnInit() {
     this.topPinnedOrders = [this.orders[6]];

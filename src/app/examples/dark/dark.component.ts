@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { DarkSnippets } from './dark.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class DarkExampleComponent extends TableExampleBase {
   summary = 'The legacy line keeps the same theme input.';
   revenueColumns = this.demoData.getRevenueColumns();
   revenue = this.demoData.getRevenue();
-  htmlSnippet = DarkSnippets.html;
-  tsSnippet = DarkSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.revenue.slice(0, 3));

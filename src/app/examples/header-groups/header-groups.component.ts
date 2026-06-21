@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { HeaderGroupsSnippets } from './header-groups.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class HeaderGroupsExampleComponent extends TableExampleBase {
   summary = 'Use nested column definitions to render grouped headers.';
   headerGroupColumns = this.demoData.getHeaderGroupColumns();
   orders = this.demoData.getOrders();
-  htmlSnippet = HeaderGroupsSnippets.html;
-  tsSnippet = HeaderGroupsSnippets.ts;
 
   protected getDataSnippet() {
     return this.demoData.dataSnippet(this.orders.slice(0, 3));

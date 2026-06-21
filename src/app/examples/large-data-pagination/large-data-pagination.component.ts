@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
-import { LargeDataPaginationSnippets } from './large-data-pagination.snippets';
 import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 interface LargePageState {
@@ -34,8 +33,6 @@ export class LargeDataPaginationExampleComponent extends TableExampleBase implem
   sortField = 'id';
   sortDirection = 'asc';
   pageSizes = [10, 25, 50, 100];
-  htmlSnippet = LargeDataPaginationSnippets.html;
-  tsSnippet = LargeDataPaginationSnippets.ts;
 
   ngOnInit() {
     this.loadPage(1, this.largePage.perPage);
