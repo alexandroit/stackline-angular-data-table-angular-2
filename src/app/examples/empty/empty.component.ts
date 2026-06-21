@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getOrderColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { EmptySnippets } from './empty.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'empty-example',
-  templateUrl: 'src/app/examples/empty/empty.component.html'
+  templateUrl: 'src/app/examples/empty/empty.component.html',
+  styleUrls: ['src/app/examples/empty/empty.component.css']
 })
 export class EmptyExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Empty state';
   summary = 'Custom empty message when there are no rows.';
-  orderColumns = getOrderColumns();
+  orderColumns = this.demoData.getOrderColumns();
   emptyRows: any[] = [];
   htmlSnippet = EmptySnippets.html;
   tsSnippet = EmptySnippets.ts;
 
   protected getDataSnippet() {
-    return dataSnippet(this.emptyRows);
+    return this.demoData.dataSnippet(this.emptyRows);
   }
 }

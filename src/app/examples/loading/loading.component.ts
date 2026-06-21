@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getOrderColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { LoadingSnippets } from './loading.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'loading-example',
-  templateUrl: 'src/app/examples/loading/loading.component.html'
+  templateUrl: 'src/app/examples/loading/loading.component.html',
+  styleUrls: ['src/app/examples/loading/loading.component.css']
 })
 export class LoadingExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Loading state';
   summary = 'Progress state for async data loading.';
-  orderColumns = getOrderColumns();
-  orders = orderRows;
+  orderColumns = this.demoData.getOrderColumns();
+  orders = this.demoData.getOrders();
   htmlSnippet = LoadingSnippets.html;
   tsSnippet = LoadingSnippets.ts;
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

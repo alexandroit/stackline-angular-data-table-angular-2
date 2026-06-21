@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getAdvancedColumns, orders as orderRows, regionOptions, statusOptions } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ColumnFilteringSnippets } from './column-filtering.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'column-filtering-example',
-  templateUrl: 'src/app/examples/column-filtering/column-filtering.component.html'
+  templateUrl: 'src/app/examples/column-filtering/column-filtering.component.html',
+  styleUrls: ['src/app/examples/column-filtering/column-filtering.component.css']
 })
 export class ColumnFilteringExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Column filtering';
   summary = 'Filter individual columns with TanStack-style id/value filter state.';
-  advancedColumns = getAdvancedColumns();
-  orders = orderRows;
-  statusOptions = statusOptions;
-  regionOptions = regionOptions;
+  advancedColumns = this.demoData.getAdvancedColumns();
+  orders = this.demoData.getOrders();
+  statusOptions = this.demoData.getStatusOptions();
+  regionOptions = this.demoData.getRegionOptions();
   columnStatusFilterValue = 'Paid';
   columnRegionFilterValue = '';
   statusColumnFilters = [{ id: 'status', value: 'Paid' }];
@@ -52,6 +57,6 @@ export class ColumnFilteringExampleComponent extends TableExampleBase {
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

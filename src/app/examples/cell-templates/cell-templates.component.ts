@@ -1,11 +1,12 @@
-import { AfterViewInit, ChangeDetectorRef, Component, TemplateRef, ViewChild } from '@angular/core';
-import { dataSnippet, formatTotal, orders as orderRows } from '../../shared/table-demo-data';
+import { Component, AfterViewInit, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { CellTemplatesSnippets } from './cell-templates.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'cell-templates-example',
-  templateUrl: 'src/app/examples/cell-templates/cell-templates.component.html'
+  templateUrl: 'src/app/examples/cell-templates/cell-templates.component.html',
+  styleUrls: ['src/app/examples/cell-templates/cell-templates.component.css']
 })
 export class CellTemplatesExampleComponent extends TableExampleBase implements AfterViewInit {
   @ViewChild('statusCell') statusCellTemplate: TemplateRef<any>;
@@ -14,12 +15,12 @@ export class CellTemplatesExampleComponent extends TableExampleBase implements A
 
   title = 'Custom cell templates';
   summary = 'Angular TemplateRef cells for status, customer and money values.';
-  orders = orderRows;
+  orders = this.demoData.getOrders();
   templateColumns: any[] = [];
   htmlSnippet = CellTemplatesSnippets.html;
   tsSnippet = CellTemplatesSnippets.ts;
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef, protected demoData: TableDemoDataService) {
     super();
   }
 
@@ -28,16 +29,16 @@ export class CellTemplatesExampleComponent extends TableExampleBase implements A
       { id: 'order', name: 'Order', selector: 'order', sortable: true, width: '130px' },
       { id: 'customer', name: 'Customer', selector: 'customer', cellTemplate: this.customerCellTemplate, wrap: true, minWidth: '220px' },
       { id: 'status', name: 'Status', selector: 'status', cellTemplate: this.statusCellTemplate, center: true, width: '120px' },
-      { id: 'total', name: 'Total', selector: formatTotal, cellTemplate: this.totalCellTemplate, right: true, width: '130px' }
+      { id: 'total', name: 'Total', selector: (row: any) => this.demoData.formatTotal(row), cellTemplate: this.totalCellTemplate, right: true, width: '130px' }
     ];
     this.changeDetector.detectChanges();
   }
 
   formatTotal(row: any) {
-    return formatTotal(row);
+    return this.demoData.formatTotal(row);
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

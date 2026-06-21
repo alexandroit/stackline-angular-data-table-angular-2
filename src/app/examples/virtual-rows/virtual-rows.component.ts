@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { buildLargeRows, dataSnippet, getLargeColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { VirtualRowsSnippets } from './virtual-rows.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'virtual-rows-example',
-  templateUrl: 'src/app/examples/virtual-rows/virtual-rows.component.html'
+  templateUrl: 'src/app/examples/virtual-rows/virtual-rows.component.html',
+  styleUrls: ['src/app/examples/virtual-rows/virtual-rows.component.css']
 })
 export class VirtualRowsExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Virtual rows';
   summary = 'Render a window of a larger row set for heavy legacy screens.';
-  largeColumns = getLargeColumns();
-  largeRows = buildLargeRows();
+  largeColumns = this.demoData.getLargeColumns();
+  largeRows = this.demoData.buildLargeRows();
   htmlSnippet = VirtualRowsSnippets.html;
   tsSnippet = VirtualRowsSnippets.ts;
 
   protected getDataSnippet() {
-    return dataSnippet(this.largeRows.slice(20, 24));
+    return this.demoData.dataSnippet(this.largeRows.slice(20, 24));
   }
 }

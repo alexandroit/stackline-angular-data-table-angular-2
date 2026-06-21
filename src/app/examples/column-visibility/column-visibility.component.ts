@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
-import { cloneColumnVisibility, dataSnippet, getAdvancedColumns, orders as orderRows, visibilityColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ColumnVisibilitySnippets } from './column-visibility.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'column-visibility-example',
-  templateUrl: 'src/app/examples/column-visibility/column-visibility.component.html'
+  templateUrl: 'src/app/examples/column-visibility/column-visibility.component.html',
+  styleUrls: ['src/app/examples/column-visibility/column-visibility.component.css']
 })
 export class ColumnVisibilityExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Column visibility';
   summary = 'Hide or show columns with columnVisibility and hiddenColumns compatibility.';
-  advancedColumns = getAdvancedColumns();
-  orders = orderRows;
-  visibilityColumns = visibilityColumns;
+  advancedColumns = this.demoData.getAdvancedColumns();
+  orders = this.demoData.getOrders();
+  visibilityColumns = this.demoData.getVisibilityColumns();
   columnVisibilityState: any = { channel: false };
   htmlSnippet = ColumnVisibilitySnippets.html;
   tsSnippet = ColumnVisibilitySnippets.ts;
@@ -22,11 +27,11 @@ export class ColumnVisibilityExampleComponent extends TableExampleBase {
   }
 
   setDemoColumnVisible(columnId: string, visible: boolean) {
-    this.columnVisibilityState = cloneColumnVisibility(this.columnVisibilityState, columnId, visible);
+    this.columnVisibilityState = this.demoData.cloneColumnVisibility(this.columnVisibilityState, columnId, visible);
     this.record('column visibility', this.columnVisibilityState);
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

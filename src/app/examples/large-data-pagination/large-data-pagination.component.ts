@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { buildLargePage, dataSnippet, getLargeDataColumns } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { LargeDataPaginationSnippets } from './large-data-pagination.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 interface LargePageState {
   rows: any[];
@@ -13,12 +13,17 @@ interface LargePageState {
 
 @Component({
   selector: 'large-data-pagination-example',
-  templateUrl: 'src/app/examples/large-data-pagination/large-data-pagination.component.html'
+  templateUrl: 'src/app/examples/large-data-pagination/large-data-pagination.component.html',
+  styleUrls: ['src/app/examples/large-data-pagination/large-data-pagination.component.css']
 })
 export class LargeDataPaginationExampleComponent extends TableExampleBase implements OnInit {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Large data pagination';
   summary = 'Server-style pagination with a large object-backed dataset and only the visible page in memory.';
-  largeColumns = getLargeDataColumns();
+  largeColumns = this.demoData.getLargeDataColumns();
   largePage: LargePageState = {
     rows: [],
     totalRows: 10000,
@@ -38,7 +43,7 @@ export class LargeDataPaginationExampleComponent extends TableExampleBase implem
 
   loadPage(page: number, perPage: number) {
     this.largePage = {
-      rows: buildLargePage(page, perPage, this.largePage.totalRows, this.sortField, this.sortDirection),
+      rows: this.demoData.buildLargePage(page, perPage, this.largePage.totalRows, this.sortField, this.sortDirection),
       totalRows: this.largePage.totalRows,
       page: page,
       perPage: perPage,
@@ -63,7 +68,7 @@ export class LargeDataPaginationExampleComponent extends TableExampleBase implem
   }
 
   protected getDataSnippet() {
-    return dataSnippet({
+    return this.demoData.dataSnippet({
       rows: this.largePage.rows.slice(0, 3),
       totalRows: this.largePage.totalRows,
       page: this.largePage.page,

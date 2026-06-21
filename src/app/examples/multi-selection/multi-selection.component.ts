@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getOrderColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { MultiSelectionSnippets } from './multi-selection.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'multi-selection-example',
-  templateUrl: 'src/app/examples/multi-selection/multi-selection.component.html'
+  templateUrl: 'src/app/examples/multi-selection/multi-selection.component.html',
+  styleUrls: ['src/app/examples/multi-selection/multi-selection.component.css']
 })
 export class MultiSelectionExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Multi selection';
   summary = 'Checkbox row selection with selected-row highlighting.';
-  orderColumns = getOrderColumns();
-  orders = orderRows;
+  orderColumns = this.demoData.getOrderColumns();
+  orders = this.demoData.getOrders();
   htmlSnippet = MultiSelectionSnippets.html;
   tsSnippet = MultiSelectionSnippets.ts;
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getOrderColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ExpandableRowsSnippets } from './expandable-rows.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'expandable-rows-example',
-  templateUrl: 'src/app/examples/expandable-rows/expandable-rows.component.html'
+  templateUrl: 'src/app/examples/expandable-rows/expandable-rows.component.html',
+  styleUrls: ['src/app/examples/expandable-rows/expandable-rows.component.css']
 })
 export class ExpandableRowsExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Expandable rows';
   summary = 'Expanded details rendered from an Angular template.';
-  orderColumns = getOrderColumns();
-  orders = orderRows;
+  orderColumns = this.demoData.getOrderColumns();
+  orders = this.demoData.getOrders();
   htmlSnippet = ExpandableRowsSnippets.html;
   tsSnippet = ExpandableRowsSnippets.ts;
 
@@ -20,6 +25,6 @@ export class ExpandableRowsExampleComponent extends TableExampleBase {
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getTicketColumns, tickets as ticketRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { DenseSnippets } from './dense.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'dense-example',
-  templateUrl: 'src/app/examples/dense/dense.component.html'
+  templateUrl: 'src/app/examples/dense/dense.component.html',
+  styleUrls: ['src/app/examples/dense/dense.component.css']
 })
 export class DenseExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Dense layout';
   summary = 'Compact row height for operation-heavy screens.';
-  ticketColumns = getTicketColumns();
-  tickets = ticketRows;
+  ticketColumns = this.demoData.getTicketColumns();
+  tickets = this.demoData.getTickets();
   htmlSnippet = DenseSnippets.html;
   tsSnippet = DenseSnippets.ts;
 
   protected getDataSnippet() {
-    return dataSnippet(this.tickets.slice(0, 3));
+    return this.demoData.dataSnippet(this.tickets.slice(0, 3));
   }
 }

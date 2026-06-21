@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  createDataTableController,
-  DataTableColumn,
-  HeadlessDataTableController
-} from '@stackline/angular-data-table-component';
-import { dataSnippet } from '../../shared/table-demo-data';
+import { createDataTableController, DataTableColumn, HeadlessDataTableController } from '@stackline/angular-data-table-component';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { HeadlessHtmlSnippets } from './headless-html.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'headless-html-example',
-  templateUrl: 'src/app/examples/headless-html/headless-html.component.html'
+  templateUrl: 'src/app/examples/headless-html/headless-html.component.html',
+  styleUrls: ['src/app/examples/headless-html/headless-html.component.css']
 })
 export class HeadlessHtmlExampleComponent extends TableExampleBase implements OnInit {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Headless custom HTML';
   summary = 'Use the exported table controller while rendering every element with custom application HTML.';
   searchText = '';
@@ -74,7 +75,7 @@ export class HeadlessHtmlExampleComponent extends TableExampleBase implements On
   }
 
   protected getDataSnippet() {
-    return dataSnippet({
+    return this.demoData.dataSnippet({
       rows: this.rows.slice(0, 3),
       state: {
         totalRows: this.headless ? this.headless.totalRows : this.rows.length,

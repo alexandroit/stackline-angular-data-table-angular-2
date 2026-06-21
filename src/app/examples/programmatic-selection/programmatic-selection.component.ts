@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getTicketColumns, tickets as ticketRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ProgrammaticSelectionSnippets } from './programmatic-selection.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'programmatic-selection-example',
-  templateUrl: 'src/app/examples/programmatic-selection/programmatic-selection.component.html'
+  templateUrl: 'src/app/examples/programmatic-selection/programmatic-selection.component.html',
+  styleUrls: ['src/app/examples/programmatic-selection/programmatic-selection.component.css']
 })
 export class ProgrammaticSelectionExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Programmatic selection';
   summary = 'Preselect rows from a predicate supplied by the app.';
-  ticketColumns = getTicketColumns();
-  tickets = ticketRows;
+  ticketColumns = this.demoData.getTicketColumns();
+  tickets = this.demoData.getTickets();
   htmlSnippet = ProgrammaticSelectionSnippets.html;
   tsSnippet = ProgrammaticSelectionSnippets.ts;
 
@@ -20,6 +25,6 @@ export class ProgrammaticSelectionExampleComponent extends TableExampleBase {
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.tickets.slice(0, 3));
+    return this.demoData.dataSnippet(this.tickets.slice(0, 3));
   }
 }

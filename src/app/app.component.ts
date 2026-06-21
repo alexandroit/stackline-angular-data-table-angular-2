@@ -3,7 +3,8 @@ import { EXAMPLE_MENU, ExampleMenuItem } from './shared/example-menu';
 
 @Component({
   selector: 'stackline-test',
-  templateUrl: 'src/app/app.component.html'
+  templateUrl: 'src/app/app.component.html',
+  styleUrls: ['src/app/app.component.css']
 })
 export class AppComponent implements OnInit {
   angularVersion = '2.4.10';

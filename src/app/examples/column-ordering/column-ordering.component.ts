@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getAdvancedColumns, orders as orderRows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ColumnOrderingSnippets } from './column-ordering.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'column-ordering-example',
-  templateUrl: 'src/app/examples/column-ordering/column-ordering.component.html'
+  templateUrl: 'src/app/examples/column-ordering/column-ordering.component.html',
+  styleUrls: ['src/app/examples/column-ordering/column-ordering.component.css']
 })
 export class ColumnOrderingExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Column ordering';
   summary = 'Render columns in a controlled order without mutating the source columns.';
-  advancedColumns = getAdvancedColumns();
-  orders = orderRows;
+  advancedColumns = this.demoData.getAdvancedColumns();
+  orders = this.demoData.getOrders();
   columnOrderPreset = 'customer-first';
   columnOrderState: any[] = ['customer', 'order', 'region', 'status', 'total', 'channel'];
   htmlSnippet = ColumnOrderingSnippets.html;
@@ -32,6 +37,6 @@ export class ColumnOrderingExampleComponent extends TableExampleBase {
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

@@ -1,11 +1,12 @@
-import { AfterViewInit, ChangeDetectorRef, Component, TemplateRef, ViewChild } from '@angular/core';
-import { dataSnippet } from '../../shared/table-demo-data';
+import { Component, AfterViewInit, ChangeDetectorRef, TemplateRef, ViewChild } from '@angular/core';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ImageCellsSnippets } from './image-cells.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'image-cells-example',
-  templateUrl: 'src/app/examples/image-cells/image-cells.component.html'
+  templateUrl: 'src/app/examples/image-cells/image-cells.component.html',
+  styleUrls: ['src/app/examples/image-cells/image-cells.component.css']
 })
 export class ImageCellsExampleComponent extends TableExampleBase implements AfterViewInit {
   @ViewChild('productCell') productCellTemplate: TemplateRef<any>;
@@ -14,16 +15,11 @@ export class ImageCellsExampleComponent extends TableExampleBase implements Afte
   title = 'Image cells';
   summary = 'Product and user-media cells rendered with Angular templates and local image assets.';
   imageColumns: any[] = [];
-  products = [
-    { id: 1, name: 'Studio Camera', category: 'Media kit', stock: 18, owner: 'Maya', image: 'src/app/assets/products/camera.svg' },
-    { id: 2, name: 'Audio Headphones', category: 'Support desk', stock: 7, owner: 'Theo', image: 'src/app/assets/products/headphones.svg' },
-    { id: 3, name: 'Mechanical Keyboard', category: 'Workspace', stock: 31, owner: 'Iris', image: 'src/app/assets/products/keyboard.svg' },
-    { id: 4, name: 'Ops Watch', category: 'Field team', stock: 12, owner: 'Noah', image: 'src/app/assets/products/watch.svg' }
-  ];
+  products = this.demoData.getProducts('src/app/assets/products');
   htmlSnippet = ImageCellsSnippets.html;
   tsSnippet = ImageCellsSnippets.ts;
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef, protected demoData: TableDemoDataService) {
     super();
   }
 
@@ -38,6 +34,6 @@ export class ImageCellsExampleComponent extends TableExampleBase implements Afte
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.products);
+    return this.demoData.dataSnippet(this.products);
   }
 }

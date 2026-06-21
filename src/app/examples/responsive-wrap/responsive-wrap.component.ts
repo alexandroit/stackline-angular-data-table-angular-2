@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getWrappedColumns, longTextRows as rows } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { ResponsiveWrapSnippets } from './responsive-wrap.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'responsive-wrap-example',
-  templateUrl: 'src/app/examples/responsive-wrap/responsive-wrap.component.html'
+  templateUrl: 'src/app/examples/responsive-wrap/responsive-wrap.component.html',
+  styleUrls: ['src/app/examples/responsive-wrap/responsive-wrap.component.css']
 })
 export class ResponsiveWrapExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Responsive and wrapped cells';
   summary = 'Long values wrap while the responsive shell protects the layout.';
-  wrappedColumns = getWrappedColumns();
-  longTextRows = rows;
+  wrappedColumns = this.demoData.getWrappedColumns();
+  longTextRows = this.demoData.getLongTextRows();
   htmlSnippet = ResponsiveWrapSnippets.html;
   tsSnippet = ResponsiveWrapSnippets.ts;
 
   protected getDataSnippet() {
-    return dataSnippet(this.longTextRows);
+    return this.demoData.dataSnippet(this.longTextRows);
   }
 }

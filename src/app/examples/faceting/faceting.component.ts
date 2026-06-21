@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
-import { dataSnippet, getAdvancedColumns, orders as orderRows, statusOptions } from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { FacetingSnippets } from './faceting.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'faceting-example',
-  templateUrl: 'src/app/examples/faceting/faceting.component.html'
+  templateUrl: 'src/app/examples/faceting/faceting.component.html',
+  styleUrls: ['src/app/examples/faceting/faceting.component.css']
 })
 export class FacetingExampleComponent extends TableExampleBase {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Faceted values';
   summary = 'Read unique value counts from the component after filtering.';
-  advancedColumns = getAdvancedColumns();
-  orders = orderRows;
-  statusOptions = statusOptions;
+  advancedColumns = this.demoData.getAdvancedColumns();
+  orders = this.demoData.getOrders();
+  statusOptions = this.demoData.getStatusOptions();
   facetFilterText = '';
   facetStatusFilterValue = '';
   facetColumnFilters: any[] = [];
@@ -36,6 +41,6 @@ export class FacetingExampleComponent extends TableExampleBase {
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }

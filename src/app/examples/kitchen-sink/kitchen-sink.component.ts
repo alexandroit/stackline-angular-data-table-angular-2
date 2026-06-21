@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  cloneColumnVisibility,
-  dataSnippet,
-  getHeaderGroupColumns,
-  orders as orderRows,
-  regionOptions,
-  statusOptions
-} from '../../shared/table-demo-data';
 import { TableExampleBase } from '../../shared/table-example-base';
 import { KitchenSinkSnippets } from './kitchen-sink.snippets';
+import { TableDemoDataService } from '../../services/table-demo-data.service';
 
 @Component({
   selector: 'kitchen-sink-example',
-  templateUrl: 'src/app/examples/kitchen-sink/kitchen-sink.component.html'
+  templateUrl: 'src/app/examples/kitchen-sink/kitchen-sink.component.html',
+  styleUrls: ['src/app/examples/kitchen-sink/kitchen-sink.component.css']
 })
 export class KitchenSinkExampleComponent extends TableExampleBase implements OnInit {
+  constructor(protected demoData: TableDemoDataService) {
+    super();
+  }
+
   title = 'Kitchen sink';
   summary = 'Filtering, visibility, ordering, pinning, grouping, selection, expansion and pagination together.';
-  headerGroupColumns = getHeaderGroupColumns();
-  orders = orderRows;
-  regionOptions = regionOptions;
-  statusOptions = statusOptions;
+  headerGroupColumns = this.demoData.getHeaderGroupColumns();
+  orders = this.demoData.getOrders();
+  regionOptions = this.demoData.getRegionOptions();
+  statusOptions = this.demoData.getStatusOptions();
   kitchenGlobalFilter = 'paid';
   kitchenRegionFilter = 'Canada';
   kitchenStatusFilter = '';
@@ -63,7 +61,7 @@ export class KitchenSinkExampleComponent extends TableExampleBase implements OnI
   }
 
   setKitchenColumnVisible(columnId: string, visible: boolean) {
-    this.kitchenColumnVisibility = cloneColumnVisibility(this.kitchenColumnVisibility, columnId, visible);
+    this.kitchenColumnVisibility = this.demoData.cloneColumnVisibility(this.kitchenColumnVisibility, columnId, visible);
     this.record('kitchen visibility', this.kitchenColumnVisibility);
   }
 
@@ -83,6 +81,6 @@ export class KitchenSinkExampleComponent extends TableExampleBase implements OnI
   }
 
   protected getDataSnippet() {
-    return dataSnippet(this.orders.slice(0, 3));
+    return this.demoData.dataSnippet(this.orders.slice(0, 3));
   }
 }
