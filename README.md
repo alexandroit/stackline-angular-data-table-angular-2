@@ -2,11 +2,11 @@
 
 Clean Angular `2.4.10` consumer app for `@stackline/angular-data-table-component@2.0.0`.
 
-This repository exists for StackBlitz and keeps the examples human-readable:
+This repository exists for StackBlitz and keeps the examples easy to inspect:
 
 - one route per example
 - one folder per example under `src/app/examples`
-- real Angular templates, not generated snippet strings
+- real Angular templates
 - package installed from npm
 - SystemJS runtime matching Angular 2 applications
 
